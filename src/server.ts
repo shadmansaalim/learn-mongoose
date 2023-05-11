@@ -1,26 +1,24 @@
-const express = require('express')
-const mongoose = require('mongoose');
+// Imports
+import mongoose from 'mongoose';
+import app from './app';
 
-const app = express()
-const port = 3000
+// Defining port
+const port: number = 3000;
 
-// database connection
+// Database connection
 async function bootstrap() {
     try {
         await mongoose.connect('mongodb://127.0.0.1:27017/practice-mongoose');
         console.log(`Database connection successful`);
+
+        app.listen(port, () => {
+            console.log(`Server is listening on port ${port}`)
+        })
     }
     catch (err) {
         console.log(`Failed to connect database`, err);
     }
 }
-
+// Calling the function
 bootstrap()
 
-app.get('/', (req, res) => {
-    res.send('Hello World!')
-})
-
-app.listen(port, () => {
-    console.log(`Example app listening on port ${port}`)
-})
