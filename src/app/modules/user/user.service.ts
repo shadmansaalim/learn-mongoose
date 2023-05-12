@@ -12,3 +12,8 @@ export const getUsersFromDb = async (): Promise<Array<IUser>> => {
     const users = await User.find();
     return users;
 }
+
+export const getUserByIdFromDb = async (payload: string): Promise<IUser | null> => {
+    const user = await User.findOne({ id: payload }, { name: 1, contactNo: 1 });
+    return user;
+}
