@@ -21,3 +21,9 @@ export const getUserByIdFromDb = async (payload: string): Promise<IUser | null> 
     return user;
 }
 
+
+// Static -> Class er method ke directly call kora instance banano chara
+export const getAdminUsersFromDb = async () => {
+    const admins = await User.getAdminUsers();
+    return admins;
+}
